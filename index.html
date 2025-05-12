@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roberto B. Galang III | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://i.postimg.cc/TPWFYdwY/c-HJpdm-F0-ZS9sci9pb-WFn-ZXMvd2-Vic2l0-ZS8y-MDIy-LTA1-L3-B4-MTM2-Njcx-MC1pb-WFn-ZS1rd3-Z4e-GVxc-C5qc-Gc.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 380px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    @media (min-width: 601px) {
+      .menu-toggle {
+        display: none !important;
+      }
+
+      .nav-links {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background-color: transparent;
+        padding: 0;
+      }
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+.home {
+  max-width: 100% !important;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+    .home {
+      background: url("https://i.postimg.cc/bYK03y38/Satoru-Gojo-arrives-on-the-battlefield-Anime.png") no-repeat center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 4px #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home h1 {
+      font-size: 3em;
+      animation: flicker 3s infinite;
+    }
+
+    .home p {
+      font-size: 1.2em;
+      animation: fadeInUp 2s ease-out;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .about img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      margin-bottom: 20px;
+    }
+
+    .portfolio, .certificates {
+      background-color: rgba(0, 0, 0, 0.7);
+      margin: 20px;
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    .certificate-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .certificate-gallery img {
+      max-width: 300px;
+      width: 100%;
+      border: 2px solid #00aaff;
+      border-radius: 10px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .certificate-gallery img.visible {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 20px #00aaff;
+    }
+
+    .certificate-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .floating-icons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .floating-icons i {
+      position: absolute;
+      color: rgba(0, 217, 255, 0.4);
+      font-size: 24px;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-10vh) rotate(360deg);
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 10px;
+      margin: 0 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .card.bg-dark {
+      background-color: rgba(0, 0, 0, 0.85) !important;
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      height: 200px;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    .card-body {
+      padding: 15px;
+      font-size: 1rem;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    @media (max-width: 576px) {
+      .home h1 {
+        font-size: 2em;
+      }
+
+      .home p,
+      .card-text {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+
+      .card-body {
+        padding: 10px;
+      }
+    }
+    
+    .text-box {
+  background: rgba(0, 0, 0, 0.6); /* dark background */
+  padding: 20px 30px;
+  border-radius: 10px;
+  z-index: 2;
+}
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section id="home" class="home">
+    <div class="floating-icons">
+      <i class="fas fa-star" style="left: 10%; animation-delay: 0s;"></i>
+      <i class="fas fa-magic" style="left: 30%; animation-delay: 2s;"></i> 
+      <i class="fas fa-bolt" style="left: 50%; animation-delay: 4s;"></i>
+      <i class="fas fa-star" style="left: 70%; animation-delay: 1s;"></i>
+      <i class="fas fa-magic" style="left: 90%; animation-delay: 3s;"></i>
+    </div>
+    <div class="text-box">
+    <h1>Welcome, weaklings.</h1>
+    <p>"I'm Roberto Galang... the honored one. Feel free to browse through my domain."</p>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <img src="https://i.ibb.co/5xRJ6NK4/FB-IMG-1746930502202.jpg" alt="Profile Picture" />
+    <p>My name is Roberto B. Galang III, a 20-year-old introvert with a curious and ambitious spirit. I enjoy reading books, playing online games, stargazing, and indulging in seafood—even though I’m slightly allergic to it. I’m a fast learner, a friendly person, and a good listener who values deep connections and personal growth. I’m passionate about learning programming because it’s a key step toward building my own corporation. I aspire not only to create a successful business but also to develop a top-tier security system that will protect it. With determination and a vision for the future, I dream of discovering the mysteries of the universe while making a meaningful impact here on Earth.</p>
+  </section>
+  
+<section id="achievements" class="py-5 d-flex justify-content-center align-items-center flex-column text-center">
+  <div class="container">
+    <h2 class="mb-4">Certificates</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="certificate-gallery d-flex justify-content-center flex-wrap gap-3">
+            <img src="https://api2.sololearn.com/v2/certificates/CC-1W6DXMAA/image/png?t=638820283131693980" alt="HTML Certificate">
+            <img src="https://api2.sololearn.com/v2/certificates/CC-LWHGOKQ3/image/png?t=638822690096812730" alt="CSS Certificate">
+            <img src="https://api2.sololearn.com/v2/certificates/CC-HFAU2JOS/image/png?t=638825727745148430" alt="JS Certificate">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ <h2 class="mt-5 mb-4">My Projects</h2>
+<div class="container mt-4">
+  <div class="row justify-content-center g-4">
+    
+    <!-- Project 1 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card bg-dark text-white h-100 shadow border-secondary">
+        <img src="https://raw.githubusercontent.com/RobGalangIII/WS101/main/image/Screenshot_20250512_205029_Samsung%20Internet.jpg" 
+             class="card-img-top img-fluid" 
+             alt="Project 1"
+             style="height: 300px; object-fit: cover; object-position: top;">
+        <div class="card-body text-center">
+          <p class="card-text">Admin Dashboard Page</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card bg-dark text-white h-100 shadow border-secondary">
+        <img src="https://raw.githubusercontent.com/RobGalangIII/WS101/main/image/Screenshot_20250512_204606_Samsung%20Internet.jpg" 
+             class="card-img-top img-fluid" 
+             alt="Project 2"
+             style="height: 300px; object-fit: cover; object-position: top;">
+        <div class="card-body text-center">
+          <p class="card-text">Responsive Signup Form</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card bg-dark text-white h-100 shadow border-secondary">
+        <img src="https://raw.githubusercontent.com/RobGalangIII/WS101/main/image/Screenshot_20250512_204925_Samsung%20Internet.jpg" 
+             class="card-img-top img-fluid" 
+             alt="Project 3"
+             style="height: 300px; object-fit: cover; object-position: top;">
+        <div class="card-body text-center">
+          <p class="card-text">Pricing Table Section</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card bg-dark text-white h-100 shadow border-secondary">
+        <img src="https://raw.githubusercontent.com/RobGalangIII/WS101/main/image/Screenshot_20250512_205005_Samsung%20Internet.jpg" 
+             class="card-img-top img-fluid" 
+             alt="Project 4"
+             style="height: 300px; object-fit: cover; object-position: top;">
+        <div class="card-body text-center">
+          <p class="card-text">E-Commerce Product Grid Page</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Your Name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Your Email" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <script>
+    function toggleMenu() {
+      if (window.innerWidth <= 600) {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('show');
+      }
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("All fields are required!");
+        return;
+      }
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert("Enter a valid email address.");
+        return;
+      }
+
+      alert("Message sent successfully!");
+      document.getElementById("contactForm").reset();
+    });
+
+    const sections = document.querySelectorAll("section");
+    const certImages = document.querySelectorAll(".certificate-gallery img");
+
+    window.addEventListener("scroll", () => {
+      const trigger = window.innerHeight * 0.8;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < trigger) section.classList.add("visible");
+      });
+      certImages.forEach(img => {
+        const rect = img.getBoundingClientRect();
+        if (rect.top < trigger) img.classList.add("visible");
+      });
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 600) {
+          document.getElementById("navLinks").classList.remove("show");
+        }
+      });
+    });
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
